@@ -1,27 +1,38 @@
-from selenium import webdriver
+import allure
+import pytest
 
-from pages.order_page import Order
+import data
 
 
-class TestImportantQuestions:
-    driver = None
+class Testorder_pagePage:
 
-    @classmethod
-    def setup_class(cls):
-        cls.driver = webdriver.Chrome()
-
-    def test_order(self):
-        self.driver.get('https://qa-scooter.praktikum-services.ru/')
-        order = Order(self.driver)
-        order.click_main_button_order()
-        order.wait_text_order_page()
-        order.check_open_page_order()
-        order.click_logo_scooter()
-        order.wait_text_main_page()
-        order.check_open_main_page()
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        order.wait_button_order_center()
-        order.click_center_button_order()
-        order.check_open_page_order()
-
+    @allure.title("Проверка оформления заказа и проверка перехода к блоку оформленния заказа с 2 мест")
+    @pytest.mark.parametrize('name, family_name, address, metro, phone, comment',
+                             [[data.name, data.family_name, data.address, data.metro,
+                               data.phone, data.comment],
+                              [data.name, data.family_name, data.address, data.metro, data.phone,
+                               data.comment],
+                              [data.name, data.family_name, data.address, data.metro, data.phone,
+                               data.comment]])
+    def test_order_page(self, name, family_name, address, metro, phone, comment, order_page):
+        order_page.click_main_button_order()
+        order_page.check_open_page_order()
+        order_page.click_logo_scooter()
+        order_page.check_open_main_page()
+        order_page.scrool_subheader()
+        order_page.click_element_order()
+        order_page.check_open_page_order()
+        order_page.set_name(name)
+        order_page.set_family_name(family_name)
+        order_page.set_address(address)
+        order_page.set_metro(metro)
+        order_page.set_phone(phone)
+        order_page.click_next()
+        order_page.set_when()
+        order_page.set_term()
+        order_page.set_color()
+        order_page.set_comment(comment)
+        order_page.click_order()
+        order_page.click_yes()
+        order_page.check_order()
 
