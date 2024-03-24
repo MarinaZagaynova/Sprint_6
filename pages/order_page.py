@@ -122,4 +122,4 @@ class OrderPage:
     def check_order(self):
         locators = OrderLocators
         WebDriverWait(self.driver, 5).until(expected_conditions.element_to_be_clickable(locators.modal_message))
-        assert self.driver.find_element(*locators.modal_message).text == 'Посмотреть статус'
+        assert self.driver.find_element(*locators.modal_message).text == data.text_success_order
