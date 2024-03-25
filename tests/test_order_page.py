@@ -4,7 +4,7 @@ import pytest
 import data
 
 
-class Testorder_pagePage:
+class TestOrderPage:
 
     @allure.title("Проверка оформления заказа и проверка перехода к блоку оформленния заказа с 2 мест")
     @pytest.mark.parametrize('name, family_name, address, metro, phone, comment',
@@ -14,11 +14,10 @@ class Testorder_pagePage:
                                data.comment],
                               [data.name, data.family_name, data.address, data.metro, data.phone,
                                data.comment]])
-    def test_order_page(self, name, family_name, address, metro, phone, comment, order_page):
+    def test_order_page(self, name, family_name, address, metro, phone, comment, order_page, main_page):
         order_page.click_main_button_order()
         order_page.check_open_page_order()
-        order_page.click_logo_scooter()
-        order_page.check_open_main_page()
+        main_page.click_logo()
         order_page.scrool_subheader()
         order_page.click_element_order()
         order_page.check_open_page_order()
@@ -35,4 +34,3 @@ class Testorder_pagePage:
         order_page.click_order()
         order_page.click_yes()
         order_page.check_order()
-

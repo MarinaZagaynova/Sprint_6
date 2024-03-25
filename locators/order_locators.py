@@ -1,13 +1,10 @@
-import pytest
 from selenium.webdriver.common.by import By
 
 
 class OrderLocators:
     button_main = [By.XPATH, "//div[@class='Header_Header__214zg']//button[@class='Button_Button__ra12g']"]
     BUTTON_CENTER = [By.XPATH, "//*[contains(@class, 'Button_Middle')]"]
-    logo_scooter = [By.CSS_SELECTOR, ".Header_LogoScooter__3lsAR"]
 
-    main_message = [By.CLASS_NAME, "Home_SubHeader__zwi_E"]
     text_order_page = [By.CLASS_NAME, "Order_Header__BZXOb"]
     field_name = [By.XPATH, ".//input[@placeholder='* Имя']"]
     field_family_name = [By.XPATH, ".//input[@placeholder='* Фамилия']"]

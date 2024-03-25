@@ -1,8 +1,7 @@
 import pytest
 from selenium import webdriver
 
-from pages.important_questions_page import ImportantQuestionsPage
-from pages.main_pages import MainPage
+from pages.main_page import MainPage
 from pages.order_page import OrderPage
 
 
@@ -23,10 +22,6 @@ def main_page(webpage):
     return main_page
 
 
-@pytest.fixture(scope='function')
-def important_question_page(webpage):
-    important_question_page = ImportantQuestionsPage(webpage)
-    return important_question_page
 
 
 @pytest.fixture(scope='function')
